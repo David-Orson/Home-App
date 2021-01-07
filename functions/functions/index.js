@@ -10,7 +10,8 @@ admin.initializeApp(); */
 
 
 const {
-  signup
+  signup,
+  login
 } = require("./handlers/users")
 
 
@@ -37,6 +38,7 @@ app.post('./signup', (req, res) => {
 }) */
 
 app.post('/signup', signup);
+app.post('/login', login);
 
 
 exports.api = functions.region("europe-west1").https.onRequest(app);
