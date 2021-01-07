@@ -13,8 +13,16 @@ exports.signup = async (req, res) => {
   }
 
   const data = await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
-  
-  return res.status(201).json({ user: `user ${data.user.uid} signed up successfully`})
+
+  let token, userId;
+
+  userId = data.user.uid
+
+  const idToken = await data.user.getIdToken();
+
+  token = idToken;
+
+  return res.status(201).json({ /* user: `user ${data.user.uid} signed up successfully` */ token })
   }
   catch (err) {
     console.error(err);
