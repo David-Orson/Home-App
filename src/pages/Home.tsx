@@ -1,17 +1,25 @@
-import React from 'react';
+import React from "react";
 
-const Home = () => {
+type HomeProps = {
+  authState: number;
+};
+
+const Home = ({ authState }: HomeProps) => {
   return (
     <div>
-      <p>
-        Home
-      </p>
-      <a href="/login">
-        Login
-      </a>
-      
+      {authState ? (
+        <div>
+          <p>Home</p>
+          <p>logged in</p>
+        </div>
+      ) : (
+        <div>
+          <p>Home</p>
+          <a href='/login'>Login</a>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Home;
