@@ -5,14 +5,14 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
-interface HomeInterface extends RouteComponentProps {
+interface HomePgComponentProps extends RouteComponentProps {
   authState: number;
 }
 
 const App = () => {
   const [authState, setAuthState] = useState<number>(0);
 
-  const HomePg = (props: HomeInterface) => <Home authState={authState} />;
+  const HomePg = (props: HomePgComponentProps) => <Home authState={authState} />;
   const SignupPg = (props: RouteComponentProps) => <Signup />;
   const LoginPg = (props: RouteComponentProps) => <Login />;
 
