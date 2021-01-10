@@ -10,7 +10,7 @@ interface HomeInterface extends RouteComponentProps {
 }
 
 const App = () => {
-  const [authState, setAuthState] = useState<number>(1);
+  const [authState, setAuthState] = useState<number>(0);
 
   const HomePg = (props: HomeInterface) => <Home authState={authState} />;
   const SignupPg = (props: RouteComponentProps) => <Signup />;
