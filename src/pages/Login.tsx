@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { FC, ChangeEvent, useState } from "react";
 
 /* import { loginUser } from "../redux/actions/userActions" */
 
-const Login = () => {
+interface Props {}
+
+const Login: FC<Props> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,7 +17,7 @@ const Login = () => {
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "email":
         setEmail(e.target.value);

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
+
+interface Props {
+  authState: number;
+}
 
 type HomeProps = {
   authState: number;
 };
 
-const Home = ({ authState }: HomeProps) => {
+const Home: FC<Props> = ({ authState }: HomeProps) => {
   return (
     <div>
       {authState ? (
