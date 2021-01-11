@@ -4,7 +4,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import userReducer from "./reducers/userReducer";
 
-const initialState = {};
+/* interface initialState {
+  authenticated: boolean;
+} */
+
+const initialState: any = {
+  authenticated: false,
+};
 
 const middleware = [thunk];
 

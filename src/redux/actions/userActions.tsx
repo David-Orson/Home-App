@@ -18,7 +18,7 @@ export const getUserData = async (dispatch: any) => {
 };
 
 export const signupUser = async (newUserData: any, dispatch: any) => {
-  const res: any = axios.post("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/signup", {
+  const res: any = await axios.post("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/signup", {
     email: newUserData.email,
     password: newUserData.password,
     confirmPassword: newUserData.confirmPassword,
@@ -30,10 +30,10 @@ export const signupUser = async (newUserData: any, dispatch: any) => {
   navigate("/");
 };
 
-export const loginUser = async (userData: any, dispatch: any) => {
+export const loginUser = (email: any, password: any) => async (dispatch: any) => {
   const res = await axios.post("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/login", {
-    email: userData.email,
-    password: userData.password,
+    email,
+    password,
   });
   setAuthorizationHeader(res.data.token);
   dispatch(getUserData(dispatch));

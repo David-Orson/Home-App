@@ -1,5 +1,10 @@
 import React, { FC, ChangeEvent, useState } from "react";
 
+import store from "../redux/store";
+import { signupUser } from "../redux/actions/userActions";
+
+const { dispatch } = store;
+
 interface Props {}
 
 const Signup: FC<Props> = () => {
@@ -8,7 +13,18 @@ const Signup: FC<Props> = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e: any) => {
+    console.log("submitted");
+    e.preventDefault();
+    let userData = {
+      handle,
+      email,
+      password,
+      confirm,
+    };
+    console.log(userData);
+    signupUser(userData, dispatch);
+  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
@@ -31,28 +47,14 @@ const Signup: FC<Props> = () => {
       <h1>Signup</h1>
       <form className='form' onSubmit={handleSubmit}>
         <label>Username</label>
-        <input
-          name='handle'
-          type='text'
-          value={handle}
-          onChange={handleChange}
-        />
+        <input name='handle' type='text' value={handle} onChange={handleChange} />
         <label>Email</label>
         <input name='email' type='text' value={email} onChange={handleChange} />
         <label>Password</label>
-        <input
-          name='password'
-          type='password'
-          value={password}
-          onChange={handleChange}
-        />
+        <input name='password' type='password' value={password} onChange={handleChange} />
         <label>Confirm Password</label>
-        <input
-          name='confirm'
-          type='password'
-          value={confirm}
-          onChange={handleChange}
-        />
+        <input name='confirm' type='password' value={confirm} onChange={handleChange} />
+        <button data-testid='submit-button'>submit</button>
       </form>
       <a href='/'>Home</a>
     </div>

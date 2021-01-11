@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useState } from "react";
 
-/* import { loginUser } from "../redux/actions/userActions" */
+import { loginUser } from "../redux/actions/userActions";
 
 interface Props {}
 
@@ -15,6 +15,8 @@ const Login: FC<Props> = () => {
     } else {
       console.log("handle");
     }
+
+    loginUser(email, password);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,12 +37,7 @@ const Login: FC<Props> = () => {
         <label>Username or Email</label>
         <input name='email' type='text' value={email} onChange={handleChange} />
         <label>Password</label>
-        <input
-          name='password'
-          type='password'
-          value={password}
-          onChange={handleChange}
-        />
+        <input name='password' type='password' value={password} onChange={handleChange} />
         <button data-testid='submit-button'>submit</button>
       </form>
       <a href='/'>Home</a>

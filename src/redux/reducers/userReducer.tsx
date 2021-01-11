@@ -1,6 +1,10 @@
-import { SET_USER } from "../types";
+import { SET_AUTHENTICATED, SET_UNAUTHENTICATED, SET_USER } from "../types";
 
-const userReducer = (state: any, action: any) => {
+const initialState: any = {
+  authenticated: false,
+};
+
+const userReducer: any = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_USER:
       return {
@@ -8,6 +12,15 @@ const userReducer = (state: any, action: any) => {
         authenticated: true,
         ...action.payload,
       };
+    case SET_AUTHENTICATED:
+      return {
+        ...state,
+        authenticated: true,
+      };
+    case SET_UNAUTHENTICATED:
+      return initialState;
+    default:
+      return state;
   }
 };
 
