@@ -40,7 +40,7 @@ export const loginUser = async (userData: any, dispatch: any) => {
   navigate("/");
 };
 
-export const logoutUser = (dispatch: any) => {
+export const logoutUser = () => (dispatch: any) => {
   localStorage.removeItem("FBIdToken");
   delete axios.defaults.headers.common["Authorization"];
   dispatch({ type: SET_UNAUTHENTICATED });

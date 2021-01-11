@@ -12,6 +12,6 @@ const reducers = combineReducers({
   user: userReducer,
 });
 
-const store = createStore(reducers, initialState, composeWithDevTools(applyMiddleware(...middleware)));
+const store: any = createStore(reducers, initialState, composeWithDevTools(applyMiddleware(...middleware)));
 
 export default store;
