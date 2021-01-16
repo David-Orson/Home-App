@@ -29,7 +29,7 @@ if (token) {
   } else {
     dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["Authorization"] = token;
-    dispatch(getUserData(dispatch));
+    dispatch(getUserData());
   }
 }
 

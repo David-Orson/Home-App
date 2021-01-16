@@ -8,7 +8,7 @@ const setAuthorizationHeader = (token: any) => {
   axios.defaults.headers.common["Authorization"] = FBIdToken;
 };
 
-export const getUserData = async (dispatch: any) => {
+export const getUserData = () => async (dispatch: any) => {
   const userDetails = await axios.get("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/user");
 
   dispatch({
@@ -26,7 +26,7 @@ export const signupUser = async (newUserData: any, dispatch: any) => {
   });
   setAuthorizationHeader(res.data.token);
 
-  dispatch(getUserData(dispatch));
+  dispatch(getUserData());
   navigate("/");
 };
 
@@ -36,7 +36,7 @@ export const loginUser = (email: any, password: any) => async (dispatch: any) =>
     password,
   });
   setAuthorizationHeader(res.data.token);
-  dispatch(getUserData(dispatch));
+  dispatch(getUserData());
   navigate("/");
 };
 
