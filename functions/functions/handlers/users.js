@@ -63,3 +63,17 @@ exports.login = async (req, res) => {
     return res.status(403).json({ general: "Wrong credentials, please try again" });
   }
 };
+
+exports.getAuthenticatedUser = async (req, res) => {
+  try {
+    let userData = {};
+    const doc = await db.doc(`/users/${req.user.handle}`).get();
+
+    userData.credentials = doc.data();
+
+    return res.json(userData);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: err.code });
+  }
+};
