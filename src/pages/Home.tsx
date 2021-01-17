@@ -13,9 +13,10 @@ type HomeProps = {
 
 const Home: FC<Props> = ({ authState }: HomeProps) => {
   const state = store.getState();
+  console.log(state);
   return (
     <div>
-      {state.user ? (
+      {state.user.authenticated ? (
         <div>
           <p>Home</p>
           <p>logged in</p>
