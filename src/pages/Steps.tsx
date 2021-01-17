@@ -1,6 +1,8 @@
 import React, { FC, useState, useEffect } from "react";
 import { Link } from "@reach/router";
 
+import { setStepData } from "../redux/actions/stepsActions";
+
 interface Props {}
 
 const Steps: FC<Props> = () => {
@@ -31,7 +33,7 @@ const Steps: FC<Props> = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setRevealState(!revealState);
+    setStepData(stepsWalked, dateWalked);
   };
 
   const handleClick = (num: number) => {

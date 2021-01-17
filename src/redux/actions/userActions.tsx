@@ -1,8 +1,7 @@
 import { SET_USER, SET_UNAUTHENTICATED } from "../types";
 import axios from "axios";
 import { navigate } from "@reach/router";
-
-const api = "https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api";
+import { api } from "../../config";
 
 const setAuthorizationHeader = (token: any) => {
   const FBIdToken = `Bearer ${token}`;
