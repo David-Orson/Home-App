@@ -2,6 +2,8 @@ import { SET_USER, SET_UNAUTHENTICATED } from "../types";
 import axios from "axios";
 import { navigate } from "@reach/router";
 
+const api = "https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api";
+
 const setAuthorizationHeader = (token: any) => {
   const FBIdToken = `Bearer ${token}`;
   localStorage.setItem("FBIdToken", FBIdToken);
@@ -9,7 +11,7 @@ const setAuthorizationHeader = (token: any) => {
 };
 
 export const getUserData = () => async (dispatch: any) => {
-  const userDetails = await axios.get("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/user");
+  const userDetails = await axios.get(`${api}/user`);
 
   dispatch({
     type: SET_USER,
@@ -18,7 +20,7 @@ export const getUserData = () => async (dispatch: any) => {
 };
 
 export const signupUser = async (newUserData: any, dispatch: any) => {
-  const res: any = await axios.post("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/signup", {
+  const res: any = await axios.post(`${api}/signup`, {
     email: newUserData.email,
     password: newUserData.password,
     confirmPassword: newUserData.confirmPassword,
@@ -31,7 +33,7 @@ export const signupUser = async (newUserData: any, dispatch: any) => {
 };
 
 export const loginUser = (email: any, password: any) => async (dispatch: any) => {
-  const res = await axios.post("https://europe-west1-orson-home-app-3e05b.cloudfunctions.net/api/login", {
+  const res = await axios.post(`${api}/login`, {
     email,
     password,
   });

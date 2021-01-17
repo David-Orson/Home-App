@@ -1,4 +1,7 @@
 import React, { FC } from "react";
+import { Link } from "@reach/router";
+
+import store from "../redux/store";
 
 interface Props {
   authState: number;
@@ -9,17 +12,19 @@ type HomeProps = {
 };
 
 const Home: FC<Props> = ({ authState }: HomeProps) => {
+  const state = store.getState();
   return (
     <div>
-      {authState ? (
+      {state.user ? (
         <div>
           <p>Home</p>
           <p>logged in</p>
+          <Link to='/steps'>Steps</Link>
         </div>
       ) : (
         <div>
           <p>Home</p>
-          <a href='/login'>Login</a>
+          <Link to='/login'>Login</Link>
         </div>
       )}
     </div>
