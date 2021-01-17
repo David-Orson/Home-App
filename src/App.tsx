@@ -9,11 +9,11 @@ import { SET_AUTHENTICATED } from "./redux/types";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import store from "./redux/store";
+import Steps from "./pages/Steps";
 
+import store from "./redux/store";
 const { dispatch } = store;
 
-/* const { dispatch } = store; */
 interface HomePgComponentProps extends RouteComponentProps {
   authState: number;
 }
@@ -24,7 +24,7 @@ const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken: any = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logoutUser());
+    dispatch(logoutUser());
     navigate("/login");
   } else {
     dispatch({ type: SET_AUTHENTICATED });
@@ -39,12 +39,14 @@ const App: FC<AppProps> = () => {
   const HomePg = (props: HomePgComponentProps) => <Home authState={authState} />;
   const SignupPg = (props: RouteComponentProps) => <Signup />;
   const LoginPg = (props: RouteComponentProps) => <Login />;
+  const StepsPg = (props: RouteComponentProps) => <Steps />;
 
   return (
     <Router>
       <HomePg path='/' authState={authState} />
       <SignupPg path='signup' />
       <LoginPg path='login' />
+      <StepsPg path='steps' />
     </Router>
   );
 };
