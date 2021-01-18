@@ -1,30 +1,41 @@
-import React, { FC, ChangeEvent, useState } from "react";
+import React, { FC, ChangeEvent, useState } from 'react';
 
-import { loginUser } from "../redux/actions/userActions";
+import store from '../redux/store';
+import { loginUser } from '../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 interface Props {}
 
 const Login: FC<Props> = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (email.includes("@")) {
-      console.log("email");
+    if (email.includes('@')) {
+      console.log('email');
     } else {
-      console.log("handle");
+      console.log('handle');
     }
 
-    loginUser(email, password);
+    console.log(email, password);
+
+    const userData = {
+      email,
+      password,
+    };
+
+    loginUser(userData, dispatch);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
-      case "email":
+      case 'email':
         setEmail(e.target.value);
         return;
-      case "password":
+      case 'password':
         setPassword(e.target.value);
         return;
     }

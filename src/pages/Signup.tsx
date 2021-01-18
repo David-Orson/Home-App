@@ -1,20 +1,21 @@
-import React, { FC, ChangeEvent, useState } from "react";
+import React, { FC, ChangeEvent, useState } from 'react';
 
-import store from "../redux/store";
-import { signupUser } from "../redux/actions/userActions";
-
-const { dispatch } = store;
+import store from '../redux/store';
+import { signupUser } from '../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 interface Props {}
 
 const Signup: FC<Props> = () => {
-  const [handle, setHandle] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [handle, setHandle] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: any) => {
-    console.log("submitted");
+    console.log('submitted');
     e.preventDefault();
     let userData = {
       handle,
@@ -28,16 +29,16 @@ const Signup: FC<Props> = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
-      case "handle":
+      case 'handle':
         setHandle(e.target.value);
         return;
-      case "email":
+      case 'email':
         setEmail(e.target.value);
         return;
-      case "password":
+      case 'password':
         setPassword(e.target.value);
         return;
-      case "confirm":
+      case 'confirm':
         setConfirm(e.target.value);
     }
   };

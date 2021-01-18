@@ -1,12 +1,13 @@
-import { SET_USER, SET_UNAUTHENTICATED } from "../types";
-import axios from "axios";
-import { navigate } from "@reach/router";
-import { api } from "../../config";
+import { SET_USER, SET_UNAUTHENTICATED } from '../types';
+import axios from 'axios';
+import { navigate } from '@reach/router';
+import { useDispatch } from 'react-redux';
+import { api } from '../../config';
 
 const setAuthorizationHeader = (token: any) => {
   const FBIdToken = `Bearer ${token}`;
-  localStorage.setItem("FBIdToken", FBIdToken);
-  axios.defaults.headers.common["Authorization"] = FBIdToken;
+  localStorage.setItem('FBIdToken', FBIdToken);
+  axios.defaults.headers.common['Authorization'] = FBIdToken;
 };
 
 export const getUserData = () => async (dispatch: any) => {
@@ -28,21 +29,19 @@ export const signupUser = async (newUserData: any, dispatch: any) => {
   setAuthorizationHeader(res.data.token);
 
   dispatch(getUserData());
-  navigate("/");
+  navigate('/');
 };
 
-export const loginUser = (email: any, password: any) => async (dispatch: any) => {
-  const res = await axios.post(`${api}/login`, {
-    email,
-    password,
-  });
+export const loginUser = async (userData: any, dispatch: any) => {
+  console.log(userData);
+  const res = await axios.post(`${api}/login`, userData);
   setAuthorizationHeader(res.data.token);
   dispatch(getUserData());
-  navigate("/");
+  navigate('/');
 };
 
-export const logoutUser = () => (dispatch: any) => {
-  localStorage.removeItem("FBIdToken");
-  delete axios.defaults.headers.common["Authorization"];
+export const logoutUser = (dispatch: any) => {
+  localStorage.removeItem('FBIdToken');
+  delete axios.defaults.headers.common['Authorization'];
   dispatch({ type: SET_UNAUTHENTICATED });
 };

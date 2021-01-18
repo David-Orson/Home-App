@@ -1,7 +1,9 @@
-import React, { FC } from "react";
-import { Link } from "@reach/router";
+import React, { FC } from 'react';
+import { Link } from '@reach/router';
 
-import store from "../redux/store";
+import store from '../redux/store';
+import { logoutUser } from '../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   authState: number;
@@ -13,6 +15,7 @@ type HomeProps = {
 
 const Home: FC<Props> = ({ authState }: HomeProps) => {
   const state = store.getState();
+  const dispatch = useDispatch();
   console.log(state);
   return (
     <div>
@@ -21,6 +24,7 @@ const Home: FC<Props> = ({ authState }: HomeProps) => {
           <p>Home</p>
           <p>logged in</p>
           <Link to='/steps'>Steps</Link>
+          <button onClick={() => logoutUser(dispatch)}>Logout</button>
         </div>
       ) : (
         <div>
