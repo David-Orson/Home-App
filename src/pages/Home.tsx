@@ -24,6 +24,7 @@ const Home: FC<Props> = ({ authState }: HomeProps) => {
           <p>Home</p>
           <p>logged in</p>
           <Link to='/steps'>Steps</Link>
+          <Link to='/learning'>Learning</Link>
           <button onClick={() => logoutUser(dispatch)}>Logout</button>
         </div>
       ) : (

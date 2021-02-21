@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Router, RouteComponentProps, Location, navigate } from '@reach/router';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 import { getUserData, logoutUser } from './redux/actions/userActions';
+import { getLearningCardsByUser } from './redux/actions/learningActions';
 import { SET_AUTHENTICATED } from './redux/types';
 import { useDispatch } from 'react-redux';
 
@@ -11,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Steps from './pages/Steps';
+import Learning from './pages/Learning';
 
 import store from './redux/store';
 
@@ -23,10 +25,13 @@ interface AppProps {}
 const App: FC<AppProps> = () => {
   const [authState, setAuthState] = useState<number>(0);
 
-  const HomePg = (props: HomePgComponentProps) => <Home authState={authState} />;
+  const HomePg = (props: HomePgComponentProps) => (
+    <Home authState={authState} />
+  );
   const SignupPg = (props: RouteComponentProps) => <Signup />;
   const LoginPg = (props: RouteComponentProps) => <Login />;
   const StepsPg = (props: RouteComponentProps) => <Steps />;
+  const LearningPg = (props: RouteComponentProps) => <Learning />;
 
   const dispatch = useDispatch();
 
@@ -43,12 +48,17 @@ const App: FC<AppProps> = () => {
     }
   }
 
+  useEffect(() => {
+    getLearningCardsByUser(dispatch);
+  }, []);
+
   return (
     <Router>
       <HomePg path='/' authState={authState} />
       <SignupPg path='signup' />
       <LoginPg path='login' />
       <StepsPg path='steps' />
+      <LearningPg path='learning' />
     </Router>
   );
 };

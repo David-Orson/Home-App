@@ -1,12 +1,12 @@
-import React, { FC, useState, useEffect } from "react";
-import { Link } from "@reach/router";
+import React, { FC, useState, useEffect } from 'react';
+import { Link } from '@reach/router';
 
-import { setStepData } from "../redux/actions/stepsActions";
+import { setStepData } from '../redux/actions/stepsActions';
 
 interface Props {}
 
 const Steps: FC<Props> = () => {
-  const [dateWalked, setDateWalked] = useState("");
+  const [dateWalked, setDateWalked] = useState('');
   const [stepsWalked, setStepsWalked] = useState(0);
 
   const [revealState, setRevealState] = useState(false);
@@ -16,16 +16,18 @@ const Steps: FC<Props> = () => {
     const yy = date.getFullYear();
     const mm = date.getMonth();
     const dd = date.getDate();
-    const formatDate = `${yy}-${mm > 9 ? mm + 1 : 0 + (mm + 1).toString()}-${dd}`;
+    const formatDate = `${yy}-${
+      mm > 9 ? mm + 1 : 0 + (mm + 1).toString()
+    }-${dd}`;
     setDateWalked(formatDate);
   }, []);
 
   const handleChange = (e: any) => {
     switch (e.target.name) {
-      case "dateWalked":
+      case 'dateWalked':
         setDateWalked(e.target.value);
         return;
-      case "stepsWalked":
+      case 'stepsWalked':
         setStepsWalked(e.target.value);
         return;
     }
@@ -41,7 +43,9 @@ const Steps: FC<Props> = () => {
     const yy = date.getFullYear();
     const mm = date.getMonth();
     const dd = date.getDate();
-    const formatDate = `${yy}-${mm > 9 ? mm + 1 : 0 + (mm + 1).toString()}-${dd > 10 ? dd + num : 0 + (dd + num).toString()}`;
+    const formatDate = `${yy}-${mm > 9 ? mm + 1 : 0 + (mm + 1).toString()}-${
+      dd > 10 ? dd + num : 0 + (dd + num).toString()
+    }`;
     setDateWalked(formatDate);
   };
 
@@ -49,8 +53,18 @@ const Steps: FC<Props> = () => {
     <div>
       <p>steps</p>
       <form onSubmit={handleSubmit}>
-        <input name='dateWalked' type='date' value={dateWalked} onChange={handleChange} />
-        <input name='stepsWalked' type='number' value={stepsWalked} onChange={handleChange} />
+        <input
+          name='dateWalked'
+          type='date'
+          value={dateWalked}
+          onChange={handleChange}
+        />
+        <input
+          name='stepsWalked'
+          type='number'
+          value={stepsWalked}
+          onChange={handleChange}
+        />
         <button type='submit'>submit</button>
         <button type='button' onClick={() => handleClick(-1)}>
           Previous
