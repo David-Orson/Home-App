@@ -79,7 +79,6 @@ const Steps: FC<Props> = () => {
           <p>{stepsWalked}</p>
         </div>
       ) : null}
-      <Link to='/'>Home</Link>
     </div>
   );
 };

@@ -3,6 +3,8 @@ import { Router, RouteComponentProps, Location, navigate } from '@reach/router';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
+import './App.css';
+
 import { getUserData, logoutUser } from './redux/actions/userActions';
 import {
   getLearningCardsByUser,
@@ -17,6 +19,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Steps from './pages/Steps';
 import Learning from './pages/Learning';
+
+import Navbar from './components/Navbar';
 
 interface HomePgComponentProps extends RouteComponentProps {
   authState: number;
@@ -56,13 +60,16 @@ const App: FC<AppProps> = () => {
   useEffect(() => {}, []);
 
   return (
-    <Router>
-      <HomePg path='/' authState={authState} />
-      <SignupPg path='signup' />
-      <LoginPg path='login' />
-      <StepsPg path='steps' />
-      <LearningPg path='learning' />
-    </Router>
+    <div>
+      <Navbar />
+      <Router>
+        <HomePg path='/' authState={authState} />
+        <SignupPg path='signup' />
+        <LoginPg path='login' />
+        <StepsPg path='steps' />
+        <LearningPg path='learning' />
+      </Router>
+    </div>
   );
 };
 

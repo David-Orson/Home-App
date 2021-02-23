@@ -16,21 +16,18 @@ type HomeProps = {
 const Home: FC<Props> = ({ authState }: HomeProps) => {
   const state = store.getState();
   const dispatch = useDispatch();
-  console.log(state);
+
   return (
     <div>
       {state.user.authenticated ? (
         <div>
           <p>Home</p>
           <p>logged in</p>
-          <Link to='/steps'>Steps</Link>
-          <Link to='/learning'>Learning</Link>
           <button onClick={() => logoutUser(dispatch)}>Logout</button>
         </div>
       ) : (
         <div>
           <p>Home</p>
-          <Link to='/login'>Login</Link>
         </div>
       )}
     </div>

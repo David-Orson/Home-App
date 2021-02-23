@@ -51,8 +51,6 @@ const Login: FC<Props> = () => {
         <input name='password' type='password' value={password} onChange={handleChange} />
         <button data-testid='submit-button'>submit</button>
       </form>
-      <a href='/'>Home</a>
-      <a href='/signup'>Signup</a>
     </div>
   );
 };

@@ -284,7 +284,6 @@ const Learning: FC<Props> = () => {
   return (
     <div>
       <p>Learning</p>
-      <Link to='/'>Home</Link>
       <div>{currentCard}</div>
       <div>
         <form name='learningCard' onSubmit={handleSubmit}>
