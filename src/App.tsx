@@ -4,7 +4,11 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 import { getUserData, logoutUser } from './redux/actions/userActions';
-import { getLearningCardsByUser } from './redux/actions/learningActions';
+import {
+  getLearningCardsByUser,
+  getPendingCardsByUser,
+  getSubjectsByUser,
+} from './redux/actions/learningActions';
 import { SET_AUTHENTICATED } from './redux/types';
 import { useDispatch } from 'react-redux';
 
@@ -13,8 +17,6 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Steps from './pages/Steps';
 import Learning from './pages/Learning';
-
-import store from './redux/store';
 
 interface HomePgComponentProps extends RouteComponentProps {
   authState: number;
@@ -45,12 +47,13 @@ const App: FC<AppProps> = () => {
       dispatch({ type: SET_AUTHENTICATED });
       axios.defaults.headers.common['Authorization'] = token;
       dispatch(getUserData());
+      getLearningCardsByUser(dispatch);
+      getPendingCardsByUser(dispatch);
+      getSubjectsByUser(dispatch);
     }
   }
 
-  useEffect(() => {
-    getLearningCardsByUser(dispatch);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Router>

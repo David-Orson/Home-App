@@ -1,7 +1,9 @@
-import { SET_LEARNING_CARDS } from '../types';
+import { SET_LEARNING_CARDS, SET_PENDING_CARDS, SET_SUBJECTS } from '../types';
 
 const initialState: any = {
-  learningCards: [],
+  cards: [],
+  pendings: [],
+  subjects: [],
 };
 
 const userReducer: any = (state = initialState, action: any) => {
@@ -10,6 +12,16 @@ const userReducer: any = (state = initialState, action: any) => {
       return {
         ...state,
         cards: action.payload,
+      };
+    case SET_PENDING_CARDS:
+      return {
+        ...state,
+        pendings: action.payload,
+      };
+    case SET_SUBJECTS:
+      return {
+        ...state,
+        subjects: action.payload,
       };
     default:
       return state;
