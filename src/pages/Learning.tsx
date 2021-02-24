@@ -13,6 +13,8 @@ import {
   updatePendingCard,
 } from '../redux/actions/learningActions';
 
+import Title from '../components/Title';
+
 interface Props {}
 
 const Learning: FC<Props> = () => {
@@ -194,9 +196,9 @@ const Learning: FC<Props> = () => {
   let currentCard =
     cards.length !== 0 ? (
       <div>
-        <h1>{cards[cardSelector].title}</h1>
-        <p>{cards[cardSelector].subject}</p>
-        <p>{cards[cardSelector].body}</p>
+        <h3>{cards[cardSelector].title}</h3>
+        <h5 className='card-subheading'>{cards[cardSelector].subject}</h5>
+        <p className='card-body'>{cards[cardSelector].body}</p>
 
         {editingCard ? (
           <form name='existingLearningCard' onSubmit={handleSubmit}>
@@ -238,8 +240,8 @@ const Learning: FC<Props> = () => {
   let currentPending =
     pendings.length !== 0 ? (
       <div>
-        <h1>{pendings[pendingSelector].title}</h1>
-        <p>{pendings[pendingSelector].body}</p>
+        <h3>{pendings[pendingSelector].title}</h3>
+        <p className='card-body'>{pendings[pendingSelector].body}</p>
         {pendings[pendingSelector].isCompleted ? (
           <p>Completed</p>
         ) : (
@@ -282,9 +284,9 @@ const Learning: FC<Props> = () => {
     ) : null;
 
   return (
-    <div>
-      <p>Learning</p>
-      <div>{currentCard}</div>
+    <div className='main'>
+      <Title title='Learning' />
+      <div className='card'>{currentCard}</div>
       <div>
         <form name='learningCard' onSubmit={handleSubmit}>
           <label>Title</label>
@@ -313,7 +315,7 @@ const Learning: FC<Props> = () => {
 
           <button type='submit'>submit</button>
         </form>
-        <div>{currentPending}</div>
+        <div className='card'>{currentPending}</div>
         <div>
           <form name='pendingCard' onSubmit={handleSubmit}>
             <label>Title</label>

@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  justify-content: left;
+  padding: 10px;
+  min-height: 200px;
+  border: 1px grey solid;
+  margin: 4px;
+  border-radius: 4px;
+}
+
+.card-subheading {
+  min-height: 30px;
+}
+
+.card-body {
+  min-height: 150px;
+}

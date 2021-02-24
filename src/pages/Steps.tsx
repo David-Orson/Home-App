@@ -3,6 +3,8 @@ import { Link } from '@reach/router';
 
 import { setStepData } from '../redux/actions/stepsActions';
 
+import Title from '../components/Title';
+
 interface Props {}
 
 const Steps: FC<Props> = () => {
@@ -50,8 +52,8 @@ const Steps: FC<Props> = () => {
   };
 
   return (
-    <div>
-      <p>steps</p>
+    <div className='main'>
+      <Title title='Steps' />
       <form onSubmit={handleSubmit}>
         <input
           name='dateWalked'

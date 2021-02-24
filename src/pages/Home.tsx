@@ -5,6 +5,8 @@ import store from '../redux/store';
 import { logoutUser } from '../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
 
+import Title from '../components/Title';
+
 interface Props {
   authState: number;
 }
@@ -18,18 +20,14 @@ const Home: FC<Props> = ({ authState }: HomeProps) => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className='main'>
+      <Title title='Learning' />
       {state.user.authenticated ? (
         <div>
-          <p>Home</p>
           <p>logged in</p>
           <button onClick={() => logoutUser(dispatch)}>Logout</button>
         </div>
-      ) : (
-        <div>
-          <p>Home</p>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -44,7 +44,7 @@ const Signup: FC<Props> = () => {
   };
 
   return (
-    <div className='Login'>
+    <div className='main'>
       <h1>Signup</h1>
       <form className='form' onSubmit={handleSubmit}>
         <label>Username</label>

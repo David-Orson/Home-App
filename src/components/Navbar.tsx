@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Link } from '@reach/router';
 
+import '../css/Navbar.css';
+
 import store from '../redux/store';
 
 interface Props {}
@@ -10,7 +12,7 @@ const Navbar: FC<Props> = () => {
 
   console.log(user.authenticated);
   return (
-    <div>
+    <div className='navbar'>
       {user.authenticated ? (
         <div>
           <Link to='/'>Home</Link>

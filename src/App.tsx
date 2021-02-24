@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 import './App.css';
+import './Card.css';
 
 import { getUserData, logoutUser } from './redux/actions/userActions';
 import {
