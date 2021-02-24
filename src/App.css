@@ -39,3 +39,12 @@ form {
   flex-direction: column;
   margin: 20px;
 }
+
+.input-body {
+  min-height: 200px;
+  min-width: 400px;
+}
+
+.markup {
+  width: 100%;
+}

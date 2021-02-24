@@ -195,7 +195,7 @@ const Learning: FC<Props> = () => {
 
   let currentCard =
     cards.length !== 0 ? (
-      <div>
+      <div className='markup'>
         <h3>{cards[cardSelector].title}</h3>
         <h5 className='card-subheading'>{cards[cardSelector].subject}</h5>
         <p className='card-body'>{cards[cardSelector].body}</p>
@@ -210,9 +210,9 @@ const Learning: FC<Props> = () => {
               onChange={handleChange}
             />
             <label>Body</label>
-            <input
+            <textarea
+              className='input-body'
               name='existingCardBody'
-              type='text'
               value={existingCardBody}
               onChange={handleChange}
             />
@@ -239,7 +239,7 @@ const Learning: FC<Props> = () => {
 
   let currentPending =
     pendings.length !== 0 ? (
-      <div>
+      <div className='markup'>
         <h3>{pendings[pendingSelector].title}</h3>
         <p className='card-body'>{pendings[pendingSelector].body}</p>
         {pendings[pendingSelector].isCompleted ? (
@@ -257,9 +257,9 @@ const Learning: FC<Props> = () => {
               onChange={handleChange}
             />
             <label>Body</label>
-            <input
+            <textarea
+              className='input-body'
               name='existingPendingBody'
-              type='text'
               value={existingPendingBody}
               onChange={handleChange}
             />
@@ -297,9 +297,9 @@ const Learning: FC<Props> = () => {
             onChange={handleChange}
           />
           <label>Body</label>
-          <input
+          <textarea
+            className='input-body'
             name='cardBody'
-            type='text'
             value={cardBody}
             onChange={handleChange}
           />
@@ -326,9 +326,9 @@ const Learning: FC<Props> = () => {
               onChange={handleChange}
             />
             <label>Body</label>
-            <input
+            <textarea
+              className='input-body'
               name='pendingBody'
-              type='text'
               value={pendingBody}
               onChange={handleChange}
             />
