@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import userReducer from './reducers/userReducer';
 import learningReducer from './reducers/learningReducer';
+import uiReducer from './reducers/uiReducer';
 
 /* interface initialState {
   authenticated: boolean;
@@ -11,6 +12,16 @@ import learningReducer from './reducers/learningReducer';
 
 const initialState: any = {
   authenticated: false,
+  learning: {
+    cards: [],
+    pendings: [],
+    subjects: [],
+    loadingLearnings: false,
+    loadingPendings: false,
+    loadingSubjects: false,
+  },
+  user: { authenticated: false },
+  ui: { loading: false, errors: null },
 };
 
 const middleware = [thunk];
@@ -18,6 +29,7 @@ const middleware = [thunk];
 const reducers = combineReducers({
   user: userReducer,
   learning: learningReducer,
+  ui: uiReducer,
 });
 
 const store: any = createStore(

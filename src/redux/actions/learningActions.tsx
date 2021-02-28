@@ -3,7 +3,14 @@ import { AnyMxRecord } from 'dns';
 
 import { api } from '../../config';
 
-import { SET_LEARNING_CARDS, SET_PENDING_CARDS, SET_SUBJECTS } from '../types';
+import {
+  LOADING_LEARNING,
+  LOADING_PENDINGS,
+  LOADING_SUBJECTS,
+  SET_LEARNING_CARDS,
+  SET_PENDING_CARDS,
+  SET_SUBJECTS,
+} from '../types';
 
 export const setLearningCard = async (
   dispatch: any,
@@ -16,6 +23,7 @@ export const setLearningCard = async (
 };
 
 export const getLearningCardsByUser = async (dispatch: any) => {
+  dispatch({ type: LOADING_LEARNING });
   const res = await axios.get(`${api}/learning`);
   dispatch({ type: SET_LEARNING_CARDS, payload: res.data });
 };
@@ -42,6 +50,7 @@ export const setPendingCard = async (
 };
 
 export const getPendingCardsByUser = async (dispatch: any) => {
+  dispatch({ type: LOADING_PENDINGS });
   const res = await axios.get(`${api}/pending`);
   dispatch({ type: SET_PENDING_CARDS, payload: res.data });
 };
@@ -59,7 +68,7 @@ export const updatePendingCard = async (
     body,
     isCompleted,
   });
-  getLearningCardsByUser(dispatch);
+  getPendingCardsByUser(dispatch);
 };
 
 export const setSubject = async (dispatch: any, subject: string) => {
@@ -68,6 +77,7 @@ export const setSubject = async (dispatch: any, subject: string) => {
 };
 
 export const getSubjectsByUser = async (dispatch: any) => {
+  dispatch({ type: LOADING_SUBJECTS });
   const res = await axios.get(`${api}/subjects`);
   dispatch({ type: SET_SUBJECTS, payload: res.data });
 };

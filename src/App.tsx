@@ -25,8 +25,6 @@ import Navbar from './components/Navbar';
 
 interface HomePgComponentProps extends RouteComponentProps {
   authState: number;
-  isLoading: boolean;
-  setIsLoading: any;
 }
 
 interface AppProps {}
@@ -34,14 +32,8 @@ interface AppProps {}
 const App: FC<AppProps> = () => {
   const [authState, setAuthState] = useState<number>(0);
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const HomePg = (props: HomePgComponentProps) => (
-    <Home
-      authState={authState}
-      isLoading={isLoading}
-      setIsLoading={setIsLoading}
-    />
+    <Home authState={authState} />
   );
   const SignupPg = (props: RouteComponentProps) => <Signup />;
   const LoginPg = (props: RouteComponentProps) => <Login />;
@@ -59,7 +51,6 @@ const App: FC<AppProps> = () => {
     } else {
       dispatch({ type: SET_AUTHENTICATED });
       axios.defaults.headers.common['Authorization'] = token;
-      if (!isLoading) setIsLoading(true);
       dispatch(getUserData());
       getLearningCardsByUser(dispatch);
       getPendingCardsByUser(dispatch);
@@ -71,12 +62,7 @@ const App: FC<AppProps> = () => {
     <div>
       <Navbar />
       <Router>
-        <HomePg
-          path='/'
-          authState={authState}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
+        <HomePg path='/' authState={authState} />
         <SignupPg path='signup' />
         <LoginPg path='login' />
         <StepsPg path='steps' />

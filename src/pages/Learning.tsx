@@ -1,14 +1,13 @@
 import React, { FC, useState } from 'react';
 import { Link } from '@reach/router';
 
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch, useStore, useSelector } from 'react-redux';
 
 import AddSubject from '../components/AddSubject';
 
 import {
   setLearningCard,
   setPendingCard,
-  setSubject,
   updateLearningCard,
   updatePendingCard,
 } from '../redux/actions/learningActions';
@@ -40,15 +39,27 @@ const Learning: FC<Props> = () => {
   const [cardSelector, setCardSelector] = useState(0);
   const [pendingSelector, setPendingSelector] = useState(0);
 
+  const cards = useSelector((state: any) => state.learning.cards);
+  const loadingLearnings = useSelector(
+    (state: any) => state.learning.loadingLearning
+  );
+  const pendings = useSelector((state: any) => state.learning.pendings);
+  const loadingPendings = useSelector(
+    (state: any) => state.learning.loadingPendings
+  );
+  const subjects = useSelector((state: any) => state.learning.subjects);
+  const loadingSubjects = useSelector(
+    (state: any) => state.learning.loadingSubjects
+  );
+
   const dispatch = useDispatch();
   const store = useStore();
   const state = store.getState();
-  const { cards, pendings, subjects } = state.learning;
 
   const handleNextClick = (e: any) => {
     let cardRandomNum = Math.floor(Math.random() * cards.length);
     let pendingRandomNum = Math.floor(Math.random() * pendings.length);
-    console.log('fired');
+
     switch (e.target.name) {
       case 'cardClick':
         if (cards.length > 1 && cardRandomNum === cardSelector) {
@@ -62,13 +73,11 @@ const Learning: FC<Props> = () => {
         return;
       case 'pendingClick':
         if (pendings.length > 1 && pendingRandomNum === pendingSelector) {
-          console.log('reroll');
           handleNextClick(e);
 
           return;
         } else {
           if (pendings[pendingRandomNum].isCompleted === true) {
-            console.log('completed!');
             handleNextClick(e);
             return;
           }
@@ -286,7 +295,9 @@ const Learning: FC<Props> = () => {
   return (
     <div className='main'>
       <Title title='Learning' />
-      <div className='card'>{currentCard}</div>
+      <div className='card'>
+        {!loadingLearnings ? currentCard : 'loading...'}
+      </div>
       <div>
         <form name='learningCard' onSubmit={handleSubmit}>
           <label>Title</label>
@@ -315,7 +326,9 @@ const Learning: FC<Props> = () => {
 
           <button type='submit'>submit</button>
         </form>
-        <div className='card'>{currentPending}</div>
+        <div className='card'>
+          {!loadingPendings ? currentPending : 'loading...'}
+        </div>
         <div>
           <form name='pendingCard' onSubmit={handleSubmit}>
             <label>Title</label>
@@ -342,9 +355,8 @@ const Learning: FC<Props> = () => {
             <button type='submit'>submit</button>
           </form>
           <h3>Add Subject</h3>
-          <p></p>
           <AddSubject />
-          {subjectsMarkup}
+          {!loadingSubjects ? subjectsMarkup : 'loading...'}
         </div>
       </div>
     </div>
